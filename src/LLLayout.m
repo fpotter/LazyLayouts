@@ -3,8 +3,11 @@
 
 @implementation LLLayout
 
+@synthesize resizeToFitSubviews = _resizeToFitSubviews;
+
 - (id)init {
   if (self = [super init]) {
+    _resizeToFitSubviews = YES;
   }
   return self;
 }

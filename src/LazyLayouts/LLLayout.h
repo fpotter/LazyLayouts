@@ -3,7 +3,10 @@
 #import <UIKit/UIKit.h>
 
 @interface LLLayout : NSObject {
+  BOOL _resizeToFitSubviews;
 }
+
+@property (nonatomic, assign) BOOL resizeToFitSubviews;
 
 /**
  * Subclasses of LLLayout should fill in this method with their

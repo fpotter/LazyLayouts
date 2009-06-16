@@ -23,7 +23,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 286825E40FE7848800A1477C /* LazyLayouts.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = D2AAC07E0554694100DB518D /* libLazyLayouts.a */;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
 			remoteInfo = LazyLayouts;
 		};
 /* End PBXContainerItemProxy section */

@@ -6,25 +6,38 @@
 @implementation LLSamplesViewController
 
 - (void)loadView {
-  UIView *container = [[UIView alloc] initWithFrame:CGRectZero];
+  
+  UIView *container = [[[UIView alloc] initWithFrame:CGRectMake(0, 20, 320, 460)] autorelease];
   container.backgroundColor = [UIColor yellowColor];
-  container.layout = [LLVerticalLayout layoutWithSpacing:30];
+  container.lazyLayout = [LLVerticalLayout layout];
+  container.lazyLayout.resizeToFitSubviews = NO;
   
-  UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];  
-  label.text = @"Left Aligned";  
-  label.backgroundColor = [UIColor clearColor];
-  label.layoutParams = [LLVerticalLayoutParams paramsWithAlignment:LLVerticalLayoutAlignLeft];
+  UIView *topArea = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
+  topArea.backgroundColor = [UIColor lightGrayColor];
+  topArea.lazyLayout = [LLVerticalLayout layout];
+
+  UILabel *leftLabel = [[UILabel alloc] initWithFrame:CGRectZero];  
+  leftLabel.text = @"Left Aligned";  
+  leftLabel.backgroundColor = [UIColor redColor];
+  leftLabel.textColor = [UIColor whiteColor];
+  leftLabel.lazyLayoutParams = [LLVerticalLayoutParams paramsWithAlignment:LLVerticalLayoutAlignLeft];  
+  [topArea addSubview:leftLabel];
   
-  [container addSubview:label];
+  UILabel *centerLabel = [[UILabel alloc] initWithFrame:CGRectZero];  
+  centerLabel.text = @"Center Aligned";  
+  centerLabel.backgroundColor = [UIColor blueColor];
+  centerLabel.textColor = [UIColor whiteColor];
+  centerLabel.lazyLayoutParams = [LLVerticalLayoutParams paramsWithAlignment:LLVerticalLayoutAlignCenter];  
+  [topArea addSubview:centerLabel];
   
-  UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectZero];  
-  label2.text = @"Center Aligned";  
-  label2.backgroundColor = [UIColor clearColor];
-  label2.layoutParams = [LLVerticalLayoutParams paramsWithAlignment:LLVerticalLayoutAlignCenter];
-  
-  [container addSubview:label2];
-  
-  container.frame = CGRectMake(0, 50, container.frame.size.width, container.frame.size.height);
+  UILabel *rightLabel = [[UILabel alloc] initWithFrame:CGRectZero];  
+  rightLabel.text = @"Right Aligned";  
+  rightLabel.backgroundColor = [UIColor purpleColor];
+  rightLabel.textColor = [UIColor whiteColor];
+  rightLabel.lazyLayoutParams = [LLVerticalLayoutParams paramsWithAlignment:LLVerticalLayoutAlignRight];  
+  [topArea addSubview:rightLabel];
+    
+  [container addSubview:topArea];
   
   self.view = container;  
 }

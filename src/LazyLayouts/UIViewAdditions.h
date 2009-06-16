@@ -7,7 +7,7 @@
 
 @interface UIView (LLAdditions)
 
-@property (nonatomic, retain) LLLayout *layout;
-@property (nonatomic, retain) LLLayoutParams *layoutParams;
+@property (nonatomic, retain) LLLayout *lazyLayout;
+@property (nonatomic, retain) LLLayoutParams *lazyLayoutParams;
 
 @end

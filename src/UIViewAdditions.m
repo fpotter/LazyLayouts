@@ -2,7 +2,7 @@
 #import "LazyLayouts/UIViewAdditions.h"
 #import </usr/include/objc/objc-class.h>
 
-void MethodSwizzle(Class c, SEL orig, SEL new) {
+void LLMethodSwizzle(Class c, SEL orig, SEL new) {
   Method origMethod = class_getInstanceMethod(c, orig);
   Method newMethod = class_getInstanceMethod(c, new);
   
@@ -26,19 +26,19 @@ static BOOL needToSwizzleMethods = YES;
   NSMutableDictionary *ivars;
   
   if (needToSwizzleMethods) {
-    MethodSwizzle([UIView class], 
+    LLMethodSwizzle([UIView class], 
                   @selector(dealloc), 
                   @selector(PRE__deallocSwizzler));
     
-    MethodSwizzle([UIView class],
+    LLMethodSwizzle([UIView class],
                   @selector(layoutSubviews),
                   @selector(PRE__layoutSubviewsSwizzler));
     
-    MethodSwizzle([UIView class],
+    LLMethodSwizzle([UIView class],
                   @selector(sizeThatFits:),
                   @selector(PRE__sizeThatFits:));
     
-    MethodSwizzle([UIView class],
+    LLMethodSwizzle([UIView class],
                   @selector(didAddSubview:),
                   @selector(PRE__didAddSubview:));
         
@@ -71,7 +71,7 @@ static BOOL needToSwizzleMethods = YES;
 
 - (void)PRE__layoutSubviewsSwizzler {
   
-  LLLayout *layout = self.layout;
+  LLLayout *layout = self.lazyLayout;
   
   if (layout) {
     [layout layoutSubviews:self];
@@ -83,7 +83,7 @@ static BOOL needToSwizzleMethods = YES;
 
 - (CGSize)PRE__sizeThatFits:(CGSize)size {
   
-  LLLayout *layout = self.layout;
+  LLLayout *layout = self.lazyLayout;
   
   if (layout) {
     return [layout computeSizeForView:self withAvailableSize:size];
@@ -95,11 +95,10 @@ static BOOL needToSwizzleMethods = YES;
 
 - (void)PRE__didAddSubview:(UIView *)subview {
   
-  LLLayout *layout = self.layout;
+  LLLayout *layout = self.lazyLayout;
   
-  if (layout) {
+  if (layout && layout.resizeToFitSubviews) {
     // Automatically resize our dimensions when a new view is added.
-    // NOTE: It may be too expensive to call this each time.
     [self sizeToFit];
   }
   
@@ -107,20 +106,19 @@ static BOOL needToSwizzleMethods = YES;
   [self PRE__didAddSubview:subview];
 }
 
-
-- (LLLayout *)layout {
+- (LLLayout *)lazyLayout {
   return [[self PRE__ivars] objectForKey:@"layout"];
 }
 
-- (void)setLayout:(LLLayout *)layout {
+- (void)setLazyLayout:(LLLayout *)layout {
   [[self PRE__ivars] setObject:layout forKey:@"layout"];
 }
 
-- (LLLayoutParams *)layoutParams {
+- (LLLayoutParams *)lazyLayoutParams {
   return [[self PRE__ivars] objectForKey:@"layoutParams"];  
 }
 
-- (void)setLayoutParams:(LLLayoutParams *)layoutParams {
+- (void)setLazyLayoutParams:(LLLayoutParams *)layoutParams {
   [[self PRE__ivars] setObject:layoutParams forKey:@"layoutParams"];
 }
 

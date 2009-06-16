@@ -17,9 +17,9 @@
 }
 
 LLVerticalLayoutParams *getVerticalLayoutParamsOrDefaults(UIView *view) {
-  LLLayoutParams *params = view.layoutParams;
+  LLLayoutParams *params = view.lazyLayoutParams;
   if ([params isKindOfClass:[LLVerticalLayoutParams class]]) {
-    return (LLVerticalLayoutParams *)view.layoutParams;
+    return (LLVerticalLayoutParams *)view.lazyLayoutParams;
   } else {
     return [[[LLVerticalLayoutParams alloc] init] autorelease];
   }
@@ -27,13 +27,16 @@ LLVerticalLayoutParams *getVerticalLayoutParamsOrDefaults(UIView *view) {
 
 - (CGSize)computeSizeForView:(UIView *)view withAvailableSize:(CGSize)availableSize {
   
-  NSLog(@"Compute got called!");
+  NSLog(@"Compute got called with w = %f h = %f", availableSize.width, availableSize.height);
   
   CGSize sizeThatFits = CGSizeZero;
   
   int subviewCount = view.subviews.count;
   for (int i = 0; i < subviewCount; i++) {
     UIView *subview = [view.subviews objectAtIndex:i];
+    
+    NSLog(@"Computing for view = %@", subview);
+    
     LLVerticalLayoutParams *params = getVerticalLayoutParamsOrDefaults(subview);
     
     CGSize subviewSize = subview.frame.size;
@@ -50,6 +53,9 @@ LLVerticalLayoutParams *getVerticalLayoutParamsOrDefaults(UIView *view) {
       sizeThatFits.height += self.spacing;
     }
   }
+  
+
+  NSLog(@"sizeThatFits %@ > w = %f h = %f", self, sizeThatFits.width, sizeThatFits.height);
   
   return sizeThatFits;  
 }
@@ -111,6 +117,18 @@ LLVerticalLayoutParams *getVerticalLayoutParamsOrDefaults(UIView *view) {
     self.align = LLVerticalLayoutAlignLeft;
   }
   return self;
+}
+
++ (LLVerticalLayoutParams *)paramsWithAlignment:(LLVerticalLayoutAlign)align 
+                                        margins:(UIEdgeInsets)margins 
+                              expandToFillWidth:(BOOL)expandToFillWidth
+                              expandToFillHeight:(BOOL)expandToFillHeight
+{
+  LLVerticalLayoutParams *params = [[LLVerticalLayoutParams alloc] init];
+  params.align = align;
+  params.margins = margins;
+  params.expandToFillWidth = expandToFillWidth;
+  return [params autorelease];
 }
 
 + (LLVerticalLayoutParams *)paramsWithAlignment:(LLVerticalLayoutAlign)align {

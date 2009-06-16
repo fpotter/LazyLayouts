@@ -32,6 +32,11 @@ typedef enum LLVerticalLayoutAlign {
 
 @property (nonatomic, assign) LLVerticalLayoutAlign align;
 
++ (LLVerticalLayoutParams *)paramsWithAlignment:(LLVerticalLayoutAlign)align 
+                                        margins:(UIEdgeInsets)margins 
+                             expandToFillWidth:(BOOL)expandToFillWidth
+                             expandToFillHeight:(BOOL)expandToFillHeight;
+  
 + (LLVerticalLayoutParams *)paramsWithAlignment:(LLVerticalLayoutAlign)align;
 
 @end
