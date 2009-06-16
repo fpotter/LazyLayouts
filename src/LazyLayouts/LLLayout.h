@@ -9,15 +9,12 @@
 @property (nonatomic, assign) BOOL resizeToFitSubviews;
 
 /**
- * Subclasses of LLLayout should fill in this method with their
- * layout algorithm.
+ * Subclasses of LLLayout should implement this method to calculate their dimensions
+ * and position/size their children accordingly.
+ *
+ * NOTE: The last thing you do in layoutSubviews should always be to set the frame.
  */
-- (void)layoutSubviews:(UIView *)view;
-
-/**
- * Subclasses of LLLayout should fill in this method with 
- */
-- (CGSize)computeSizeForView:(UIView *)view withAvailableSize:(CGSize)availableSize;
+- (CGSize)layoutSubviews:(UIView *)view withAvailableSize:(CGSize)availableSize;
 
 @end
 

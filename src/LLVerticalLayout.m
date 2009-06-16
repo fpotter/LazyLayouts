@@ -25,85 +25,70 @@ LLVerticalLayoutParams *getVerticalLayoutParamsOrDefaults(UIView *view) {
   }
 }
 
-- (CGSize)computeSizeForView:(UIView *)view withAvailableSize:(CGSize)availableSize {
+- (CGSize)layoutSubviews:(UIView *)view withAvailableSize:(CGSize)availableSize {
   
-  NSLog(@"Compute got called with w = %f h = %f", availableSize.width, availableSize.height);
+  LLLOG(@"%@ > layoutSubviews > view = %@ , availableSize = %fx%f",
+        self,
+        view,
+        availableSize.width,
+        availableSize.height);
   
-  CGSize sizeThatFits = CGSizeZero;
+  // This will determine the height of our layout
+  int sumOfHeights = 0;
+  // This will determine the width of our layout
+  int maxSubviewWidth = 0;
   
   int subviewCount = view.subviews.count;
+  
+  for (int i = 0; i < subviewCount; i++) {    
+    UIView *subview = [view.subviews objectAtIndex:i];
+    LLVerticalLayoutParams *params = getVerticalLayoutParamsOrDefaults(subview);
+    
+    int availableHeightForSubview = 
+      availableSize.height -
+      sumOfHeights - 
+      (params.margins.top + params.margins.bottom);
+    
+    int availableWidthForSubview =
+      availableSize.width - (params.margins.left + params.margins.right);
+    
+    [subview layoutView:CGSizeMake(availableWidthForSubview, availableHeightForSubview)];
+
+    CGSize subviewSize = subview.frame.size;
+
+    sumOfHeights += (subviewSize.height + params.margins.top + params.margins.bottom);
+    maxSubviewWidth = MAX(subviewSize.width + params.margins.left + params.margins.right, maxSubviewWidth);
+  }
+  
+  CGSize layoutSize = CGSizeMake(maxSubviewWidth, sumOfHeights);
+  
+  int yPos = 0;
   for (int i = 0; i < subviewCount; i++) {
     UIView *subview = [view.subviews objectAtIndex:i];
-    
-    NSLog(@"Computing for view = %@", subview);
-    
     LLVerticalLayoutParams *params = getVerticalLayoutParamsOrDefaults(subview);
     
     CGSize subviewSize = subview.frame.size;
-    
-    if (subviewSize.width == 0 && subviewSize.height == 0) {
-      subviewSize = [subview sizeThatFits:
-                     CGSizeMake(availableSize.width - params.margins.left - params.margins.right, NSIntegerMax)];
-    }
-    
-    sizeThatFits.width = MAX(subviewSize.width, availableSize.width);
-    sizeThatFits.height += (subviewSize.height + params.margins.top + params.margins.bottom);
-    
-    if ((i + 1) < subviewCount) {
-      sizeThatFits.height += self.spacing;
-    }
-  }
-  
-
-  NSLog(@"sizeThatFits %@ > w = %f h = %f", self, sizeThatFits.width, sizeThatFits.height);
-  
-  return sizeThatFits;  
-}
-
-- (void)layoutSubviews:(UIView *)view {
-  CGSize size = view.frame.size;
-  
-  int y = 0;
-
-  int subviewCount = view.subviews.count;
-  for (int i = 0; i < subviewCount; i++) {
-    UIView *subview = [view.subviews objectAtIndex:i];
-
-    LLVerticalLayoutParams *params = getVerticalLayoutParamsOrDefaults(subview);
-    
-    CGRect frame = subview.frame;
-        
-    // If the caller hasn't defined a size for this guy yet, just
-    // do the right thing and sizeToFit
-    if (frame.size.width == 0 || frame.size.height == 0) {
-      CGSize newSize = [subview sizeThatFits:
-                        CGSizeMake(size.width - params.margins.left - params.margins.right, NSIntegerMax)];
-      frame.size.width = newSize.width;
-      frame.size.height = newSize.height;
-    }
-    
-    if (params.expandToFillWidth) {
-      frame.size.width = (size.width - params.margins.left - params.margins.right);
-    }
+    int xPos;
     
     if (params.align == LLVerticalLayoutAlignLeft) {
-      frame.origin.x = params.margins.left;      
+      xPos = params.margins.left;
     } else if (params.align == LLVerticalLayoutAlignRight) {
-      frame.origin.x = MAX(0, (size.width - params.margins.right - frame.size.width));
+      xPos = layoutSize.width - subviewSize.width - params.margins.right;
     } else if (params.align == LLVerticalLayoutAlignCenter) {
-      frame.origin.x = MAX(0, round((size.width / 2) - (frame.size.width / 2)));
+      xPos = round((layoutSize.width / 2) - (subviewSize.width / 2));
     }
     
-    frame.origin.y = y + params.margins.top;
-    
-    subview.frame = frame;
-    
-    y += params.margins.top + frame.size.height + params.margins.bottom;
-    
-    if ((i + 1) < subviewCount) {
-      y += self.spacing;
-    }
-  }  
+    subview.frame = CGRectMake(xPos, yPos + params.margins.top, subviewSize.width, subviewSize.height);
+    yPos += params.margins.top + subviewSize.height + params.margins.bottom;
+  }
+  
+  // Update our own dimensions
+  CGRect frame = view.frame;
+  frame.size.width = layoutSize.width;
+  frame.size.height = layoutSize.height;
+  view.frame = frame;
+  
+  return layoutSize;
 }
 
 @end

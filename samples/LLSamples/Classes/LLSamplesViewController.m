@@ -38,6 +38,34 @@
   [topArea addSubview:rightLabel];
     
   [container addSubview:topArea];
+
+  UIView *middleArea = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
+  middleArea.backgroundColor = [UIColor orangeColor];
+  middleArea.lazyLayout = [LLVerticalLayout layout];
+  
+  UILabel *labelWithMargin = [[UILabel alloc] initWithFrame:CGRectZero];  
+  labelWithMargin.text = @"Label with top/left margin of 10";  
+  labelWithMargin.backgroundColor = [UIColor redColor];
+  labelWithMargin.textColor = [UIColor whiteColor];
+  labelWithMargin.lazyLayoutParams = [LLVerticalLayoutParams paramsWithAlignment:LLVerticalLayoutAlignCenter
+                                                                    margins:UIEdgeInsetsMake(10, 10, 10, 10)
+                                                          expandToFillWidth:NO
+                                                         expandToFillHeight:NO];
+  [middleArea addSubview:labelWithMargin];
+  
+  UILabel *expandLabelWithMargin = [[UILabel alloc] initWithFrame:CGRectZero];  
+  expandLabelWithMargin.text = @"Label expanded to fill width";  
+  expandLabelWithMargin.backgroundColor = [UIColor redColor];
+  expandLabelWithMargin.textColor = [UIColor whiteColor];
+  expandLabelWithMargin.lazyLayoutParams = [LLVerticalLayoutParams paramsWithAlignment:LLVerticalLayoutAlignLeft
+                                                                         margins:UIEdgeInsetsMake(10, 10, 0, 0)
+                                                               expandToFillWidth:YES
+                                                              expandToFillHeight:NO];
+  
+  [middleArea addSubview:expandLabelWithMargin];
+  
+  [container addSubview:middleArea];
+  
   
   self.view = container;  
 }

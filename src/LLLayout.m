@@ -12,10 +12,7 @@
   return self;
 }
 
-- (void)layoutSubviews:(UIView *)view {
-}
-
-- (CGSize)computeSizeForView:(UIView *)view withAvailableSize:(CGSize)availableSize {
+- (CGSize)layoutSubviews:(UIView *)view withAvailableSize:(CGSize)availableSize {
   return CGSizeZero;
 }
 
