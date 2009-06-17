@@ -62,6 +62,17 @@ LLVerticalLayoutParams *getVerticalLayoutParamsOrDefaults(UIView *view) {
   
   CGSize layoutSize = CGSizeMake(maxSubviewWidth, sumOfHeights);
   
+  LLLayoutParams *params = view.lazyLayoutParams;
+  
+  if (params != nil && params.expandToFillWidth) {
+    layoutSize.width = availableSize.width;
+  }
+  
+  if (params != nil && params.expandToFillHeight) {
+    layoutSize.height = availableSize.height;
+  }
+  
+  
   int yPos = 0;
   for (int i = 0; i < subviewCount; i++) {
     UIView *subview = [view.subviews objectAtIndex:i];
@@ -83,11 +94,13 @@ LLVerticalLayoutParams *getVerticalLayoutParamsOrDefaults(UIView *view) {
   }
   
   // Update our own dimensions
-  CGRect frame = view.frame;
-  frame.size.width = layoutSize.width;
-  frame.size.height = layoutSize.height;
-  view.frame = frame;
-  
+  if (self.resizeToFitSubviews) {
+    CGRect frame = view.frame;
+    frame.size.width = layoutSize.width;
+    frame.size.height = layoutSize.height;
+    view.frame = frame;
+  }
+
   return layoutSize;
 }
 

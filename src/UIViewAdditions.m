@@ -43,6 +43,10 @@ static BOOL needToSwizzleMethods = YES;
                   @selector(LL__didAddSubview:));
     
     LLMethodSwizzle([UIView class],
+                    @selector(didMoveToSuperview),
+                    @selector(LL__didMoveToSuperview));
+    
+    LLMethodSwizzle([UIView class],
                     @selector(setFrame:),
                     @selector(LL__setFrame:));    
     
@@ -76,19 +80,15 @@ static BOOL needToSwizzleMethods = YES;
 - (void)LL__layoutSubviewsSwizzler {
 
   LLLayout *layout = self.lazyLayout;
-  
-  if (layout != nil && layout.resizeToFitSubviews == NO) {
-    // If resizeToFitSubviews is false, then it means we have a concrete size.
-    [layout layoutSubviews:self withAvailableSize:self.frame.size];    
+  if (layout != nil) {
+    [layout layoutSubviews:self withAvailableSize:self.frame.size];
+  } else {
+    [self LL__layoutSubviewsSwizzler];
   }
-  
-  // Call the original implementation.
-  [self LL__layoutSubviewsSwizzler];
 }
 
 - (CGSize)LL__sizeThatFits:(CGSize)size {
-  LLLOG(@"sizeThatFits > width = %f, height = %f", size.width, size.height);
-  LLLayout *layout = self.lazyLayout;
+    LLLayout *layout = self.lazyLayout;
   
   if (layout) {
     // If a layout has been configured, then we need to run through it if we're
@@ -97,27 +97,29 @@ static BOOL needToSwizzleMethods = YES;
     // NOTE: Calling layoutSubviews actually moves/sizes stuff!  This is different
     // from how sizeThatFits normally works.
     return [layout layoutSubviews:self withAvailableSize:size];
+  } else {
+    // Call the original implementation.
+    return [self LL__sizeThatFits:size];
   }
-  
-  // Call the original implementation.
-  return [self LL__sizeThatFits:size];
 }
 
 - (void)LL__didAddSubview:(UIView *)subview {
-  LLLOG(@"didAddSubview > %@", subview);
-  LLLayout *layout = self.lazyLayout;
-  
-  if (layout && layout.resizeToFitSubviews) {
-    // With every addition, our bounds can change...
-    [self setNeedsLayout];
-  }
-
   // Call the original implementation.
   [self LL__didAddSubview:subview];
 }
 
+- (void)LL__didMoveToSuperview {
+  
+  // If the receiver gets added to a view that has a layout manager, then the dimensions
+  // of that view may need to change.
+  if (self.superview != nil && self.superview.lazyLayout != nil) {
+    [self.superview setNeedsLayout];
+  }
+  
+  [self LL__didMoveToSuperview];
+}
+
 - (void)LL__setFrame:(CGRect)frame {
-  LLLOG(@"setFrame > x = %f y = %f width = %f height = %f", frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
   
   // TODO: Changing the width / height of a view that belongs to layout
   // should cause the rest of that layout to resize.
@@ -126,12 +128,11 @@ static BOOL needToSwizzleMethods = YES;
 }
 
 - (void)layoutView:(CGSize)availableSize {
-  LLLOG(@"layoutView > width = %f height = %f", availableSize.width, availableSize.height);
-  
+
   // Calling sizeThatFits on a view that's been configured with a LazyLayout
   // has the effect of calling layoutView
   CGSize sizeThatFits = [self sizeThatFits:availableSize];
-  
+    
   LLLayoutParams *params = self.lazyLayoutParams;
   
   if (params != nil) {
@@ -148,8 +149,6 @@ static BOOL needToSwizzleMethods = YES;
   frame.size.width = sizeThatFits.width;
   frame.size.height = sizeThatFits.height;
   self.frame = frame;
-  
-  LLLOG(@"Setting size: width = %f, height = %f", self.frame.size.width, self.frame.size.height);
 }
 
 - (LLLayout *)lazyLayout {
