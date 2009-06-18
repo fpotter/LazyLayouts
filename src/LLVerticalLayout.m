@@ -58,6 +58,10 @@ LLVerticalLayoutParams *getVerticalLayoutParamsOrDefaults(UIView *view) {
 
     sumOfHeights += (subviewSize.height + params.margins.top + params.margins.bottom);
     maxSubviewWidth = MAX(subviewSize.width + params.margins.left + params.margins.right, maxSubviewWidth);
+    
+    if ((i + 1) < subviewCount) {
+      sumOfHeights += _spacing;
+    }    
   }
   
   CGSize layoutSize = CGSizeMake(maxSubviewWidth, sumOfHeights);
@@ -91,6 +95,10 @@ LLVerticalLayoutParams *getVerticalLayoutParamsOrDefaults(UIView *view) {
     
     subview.frame = CGRectMake(xPos, yPos + params.margins.top, subviewSize.width, subviewSize.height);
     yPos += params.margins.top + subviewSize.height + params.margins.bottom;
+    
+    if ((i + 1) < subviewCount) {
+      yPos += _spacing;
+    }
   }
   
   // Update our own dimensions
