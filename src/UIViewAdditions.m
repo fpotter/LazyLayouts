@@ -88,19 +88,7 @@ static BOOL needToSwizzleMethods = YES;
 }
 
 - (CGSize)LL__sizeThatFits:(CGSize)size {
-    LLLayout *layout = self.lazyLayout;
-  
-  if (layout) {
-    // If a layout has been configured, then we need to run through it if we're
-    // going to be able to determine our dimensions.
-    //
-    // NOTE: Calling layoutSubviews actually moves/sizes stuff!  This is different
-    // from how sizeThatFits normally works.
-    return [layout layoutSubviews:self withAvailableSize:size];
-  } else {
-    // Call the original implementation.
-    return [self LL__sizeThatFits:size];
-  }
+  return [self layoutView:size];
 }
 
 - (void)LL__didAddSubview:(UIView *)subview {
@@ -120,35 +108,51 @@ static BOOL needToSwizzleMethods = YES;
 }
 
 - (void)LL__setFrame:(CGRect)frame {
-  
-  // TODO: Changing the width / height of a view that belongs to layout
-  // should cause the rest of that layout to resize.
-  
   [self LL__setFrame:frame];
+  
+  // If we belong to a layout, then we should tell the layout manager to
+  // redo the layout
+  if (self.superview != nil && self.superview.lazyLayout != nil) {
+    [self.superview layoutIfNeeded];
+  }
 }
 
-- (void)layoutView:(CGSize)availableSize {
-
-  // Calling sizeThatFits on a view that's been configured with a LazyLayout
-  // has the effect of calling layoutView
-  CGSize sizeThatFits = [self sizeThatFits:availableSize];
-    
+- (CGSize)layoutView:(CGSize)availableSize {
+  
+  LLLayout *layout = self.lazyLayout;
   LLLayoutParams *params = self.lazyLayoutParams;
   
-  if (params != nil) {
-    if (params.expandToFillWidth) {
-      sizeThatFits.width = availableSize.width;
+  BOOL isLayoutOrChildOfALayout =
+    (layout != nil) ||
+    (params != nil) ||
+    (self.superview != nil && self.superview.lazyLayout != nil);
+  
+  if (!isLayoutOrChildOfALayout) {
+    // We don't do anything to the dimensions since they've not opted into any
+    // of our layout magic.
+    return [self LL__sizeThatFits:availableSize];
+  } else {
+    
+    CGSize size;
+    
+    if (layout) {
+      size = [layout layoutSubviews:self withAvailableSize:availableSize];
+    } else {
+      // We don't have a layout, but we have some layout params that may affect
+      // our bounds.      
+      size = [self LL__sizeThatFits:availableSize];      
     }
     
-    if (params.expandToFillHeight) {
-      sizeThatFits.height = availableSize.height;
+    if (params.expandToFillWidth) {
+      size.width = MAX(size.width, availableSize.width);
     }
+
+    if (params.expandToFillHeight) {
+      size.height = MAX(size.height, availableSize.height);
+    }
+    
+    return size;
   }
-  
-  CGRect frame = self.frame;
-  frame.size.width = sizeThatFits.width;
-  frame.size.height = sizeThatFits.height;
-  self.frame = frame;
 }
 
 - (LLLayout *)lazyLayout {

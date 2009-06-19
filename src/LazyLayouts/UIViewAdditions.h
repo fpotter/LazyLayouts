@@ -10,6 +10,6 @@
 @property (nonatomic, retain) LLLayout *lazyLayout;
 @property (nonatomic, retain) LLLayoutParams *lazyLayoutParams;
 
-- (void)layoutView:(CGSize)availabeSize;
+- (CGSize)layoutView:(CGSize)availabeSize;
 
 @end
