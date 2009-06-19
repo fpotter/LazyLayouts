@@ -17,6 +17,11 @@
 		283A985C0FEAD5D700BFECF3 /* LLVerticalLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 286825B40FE7831B00A1477C /* LLVerticalLayout.m */; };
 		283A985D0FEAD5DE00BFECF3 /* LLLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 286825B30FE7831B00A1477C /* LLLayout.m */; };
 		283A99500FEAE0E200BFECF3 /* UIViewAdditionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 283A994F0FEAE0E200BFECF3 /* UIViewAdditionsTest.m */; };
+		283A9BB70FEB0FD300BFECF3 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 283A9BA40FEB0E9200BFECF3 /* libThree20.a */; };
+		283A9BBC0FEB100500BFECF3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283A9BBB0FEB100500BFECF3 /* QuartzCore.framework */; };
+		283A9E150FEB8B4000BFECF3 /* MethodSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 283A9E130FEB8B4000BFECF3 /* MethodSwizzle.m */; };
+		283A9E160FEB8B4000BFECF3 /* MethodSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 283A9E130FEB8B4000BFECF3 /* MethodSwizzle.m */; };
+		283A9E170FEB8B4000BFECF3 /* MethodSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 283A9E140FEB8B4000BFECF3 /* MethodSwizzle.h */; };
 		286825B60FE7831B00A1477C /* LLLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 286825B30FE7831B00A1477C /* LLLayout.m */; };
 		286825B70FE7831B00A1477C /* LLVerticalLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 286825B40FE7831B00A1477C /* LLVerticalLayout.m */; };
 		286825B80FE7831B00A1477C /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 286825B50FE7831B00A1477C /* UIViewAdditions.m */; };
@@ -28,6 +33,23 @@
 		AA747D9F0F9514B9006C5449 /* LazyLayouts_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* LazyLayouts_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		283A9BA30FEB0E9200BFECF3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 283A9B9F0FEB0E9200BFECF3 /* Three20.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libThree20.a */;
+			remoteInfo = Three20;
+		};
+		283A9BA60FEB0EA500BFECF3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 283A9B9F0FEB0E9200BFECF3 /* Three20.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* Three20 */;
+			remoteInfo = Three20;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		283A97F60FEAD32600BFECF3 /* GHAsyncTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHAsyncTestCase.h; sourceTree = "<group>"; };
@@ -74,6 +96,11 @@
 		283A984F0FEAD4C400BFECF3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		283A98AE0FEAD96700BFECF3 /* TestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestHelper.h; sourceTree = "<group>"; };
 		283A994F0FEAE0E200BFECF3 /* UIViewAdditionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditionsTest.m; sourceTree = "<group>"; };
+		283A9B9F0FEB0E9200BFECF3 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../../three20/src/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
+		283A9BB90FEB0FF100BFECF3 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		283A9BBB0FEB100500BFECF3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		283A9E130FEB8B4000BFECF3 /* MethodSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MethodSwizzle.m; sourceTree = "<group>"; };
+		283A9E140FEB8B4000BFECF3 /* MethodSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MethodSwizzle.h; sourceTree = "<group>"; };
 		286825B30FE7831B00A1477C /* LLLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLLayout.m; sourceTree = "<group>"; };
 		286825B40FE7831B00A1477C /* LLVerticalLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLVerticalLayout.m; sourceTree = "<group>"; };
 		286825B50FE7831B00A1477C /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
@@ -96,6 +123,8 @@
 				283A98480FEAD47F00BFECF3 /* libGHUnitIPhoneCL.a in Frameworks */,
 				283A984E0FEAD4C400BFECF3 /* CoreGraphics.framework in Frameworks */,
 				283A98500FEAD4C400BFECF3 /* CoreLocation.framework in Frameworks */,
+				283A9BB70FEB0FD300BFECF3 /* libThree20.a in Frameworks */,
+				283A9BBC0FEB100500BFECF3 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +152,7 @@
 		0867D691FE84028FC02AAC07 /* LazyLayouts */ = {
 			isa = PBXGroup;
 			children = (
+				283A9B9F0FEB0E9200BFECF3 /* Three20.xcodeproj */,
 				283A98490FEAD48A00BFECF3 /* Tests */,
 				283A98350FEAD47F00BFECF3 /* GHUnit */,
 				283A981D0FEAD3FE00BFECF3 /* libGHUnitIPhoneCL.a */,
@@ -136,6 +166,8 @@
 				283A98110FEAD3A600BFECF3 /* Test-Info.plist */,
 				283A984D0FEAD4C400BFECF3 /* CoreGraphics.framework */,
 				283A984F0FEAD4C400BFECF3 /* CoreLocation.framework */,
+				283A9BB90FEB0FF100BFECF3 /* CoreFoundation.framework */,
+				283A9BBB0FEB100500BFECF3 /* QuartzCore.framework */,
 			);
 			name = LazyLayouts;
 			sourceTree = "<group>";
@@ -152,6 +184,8 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				283A9E130FEB8B4000BFECF3 /* MethodSwizzle.m */,
+				283A9E140FEB8B4000BFECF3 /* MethodSwizzle.h */,
 				286825B90FE7832500A1477C /* LazyLayouts.h */,
 				286825BA0FE7832500A1477C /* LLLayout.h */,
 				286825B30FE7831B00A1477C /* LLLayout.m */,
@@ -229,6 +263,14 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
+		283A9BA00FEB0E9200BFECF3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				283A9BA40FEB0E9200BFECF3 /* libThree20.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		32C88DFF0371C24200C91783 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +291,7 @@
 				286825BE0FE7832500A1477C /* LLLayout.h in Headers */,
 				286825BF0FE7832500A1477C /* LLVerticalLayout.h in Headers */,
 				286825C00FE7832500A1477C /* UIViewAdditions.h in Headers */,
+				283A9E170FEB8B4000BFECF3 /* MethodSwizzle.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +309,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				283A9BA70FEB0EA500BFECF3 /* PBXTargetDependency */,
 			);
 			name = Test;
 			productName = Test;
@@ -300,6 +344,12 @@
 			mainGroup = 0867D691FE84028FC02AAC07 /* LazyLayouts */;
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 283A9BA00FEB0E9200BFECF3 /* Products */;
+					ProjectRef = 283A9B9F0FEB0E9200BFECF3 /* Three20.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				D2AAC07D0554694100DB518D /* LazyLayouts */,
@@ -307,6 +357,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		283A9BA40FEB0E9200BFECF3 /* libThree20.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libThree20.a;
+			remoteRef = 283A9BA30FEB0E9200BFECF3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		283A980B0FEAD3A600BFECF3 /* Resources */ = {
@@ -329,6 +389,7 @@
 				283A985C0FEAD5D700BFECF3 /* LLVerticalLayout.m in Sources */,
 				283A985D0FEAD5DE00BFECF3 /* LLLayout.m in Sources */,
 				283A99500FEAE0E200BFECF3 /* UIViewAdditionsTest.m in Sources */,
+				283A9E150FEB8B4000BFECF3 /* MethodSwizzle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,10 +400,19 @@
 				286825B60FE7831B00A1477C /* LLLayout.m in Sources */,
 				286825B70FE7831B00A1477C /* LLVerticalLayout.m in Sources */,
 				286825B80FE7831B00A1477C /* UIViewAdditions.m in Sources */,
+				283A9E160FEB8B4000BFECF3 /* MethodSwizzle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		283A9BA70FEB0EA500BFECF3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Three20;
+			targetProxy = 283A9BA60FEB0EA500BFECF3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1DEB921F08733DC00010E9CD /* Debug */ = {
@@ -385,6 +455,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
 				SDKROOT = iphoneos3.0;
@@ -398,6 +469,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
 				SDKROOT = iphoneos3.0;
@@ -414,7 +486,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
-				HEADER_SEARCH_PATHS = "./**";
+				HEADER_SEARCH_PATHS = (
+					../../three20/src,
+					"./**",
+				);
 				INFOPLIST_FILE = "Test-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
@@ -445,7 +520,10 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
-				HEADER_SEARCH_PATHS = "./**";
+				HEADER_SEARCH_PATHS = (
+					../../three20/src,
+					"./**",
+				);
 				INFOPLIST_FILE = "Test-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
