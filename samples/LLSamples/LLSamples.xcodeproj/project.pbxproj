@@ -19,13 +19,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		283A98190FEAD3C600BFECF3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 286825E40FE7848800A1477C /* LazyLayouts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 283A980F0FEAD3A600BFECF3 /* Test.app */;
-			remoteInfo = Test;
-		};
 		286825E80FE7848800A1477C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 286825E40FE7848800A1477C /* LazyLayouts.xcodeproj */;
@@ -90,7 +83,6 @@
 			isa = PBXGroup;
 			children = (
 				286825E90FE7848800A1477C /* libLazyLayouts.a */,
-				283A981A0FEAD3C600BFECF3 /* Test.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -181,13 +173,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		283A981A0FEAD3C600BFECF3 /* Test.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = Test.app;
-			remoteRef = 283A98190FEAD3C600BFECF3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		286825E90FE7848800A1477C /* libLazyLayouts.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;

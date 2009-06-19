@@ -1,5 +1,4 @@
 
-#import <Three20/Three20.h>
 #import "TestHelper.h"
 #import "LazyLayouts.h"
 
