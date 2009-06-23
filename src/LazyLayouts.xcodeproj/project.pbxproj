@@ -10,21 +10,17 @@
 		283A981E0FEAD3FE00BFECF3 /* libGHUnitIPhoneCL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 283A981D0FEAD3FE00BFECF3 /* libGHUnitIPhoneCL.a */; };
 		283A98470FEAD47F00BFECF3 /* GHUnitIPhoneTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 283A98440FEAD47F00BFECF3 /* GHUnitIPhoneTestMain.m */; };
 		283A98480FEAD47F00BFECF3 /* libGHUnitIPhoneCL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 283A98460FEAD47F00BFECF3 /* libGHUnitIPhoneCL.a */; };
-		283A984B0FEAD48A00BFECF3 /* VerticalLayoutTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 283A984A0FEAD48A00BFECF3 /* VerticalLayoutTest.m */; };
 		283A984E0FEAD4C400BFECF3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283A984D0FEAD4C400BFECF3 /* CoreGraphics.framework */; };
 		283A98500FEAD4C400BFECF3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283A984F0FEAD4C400BFECF3 /* CoreLocation.framework */; };
-		283A985B0FEAD5CB00BFECF3 /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 286825B50FE7831B00A1477C /* UIViewAdditions.m */; };
-		283A985C0FEAD5D700BFECF3 /* LLVerticalLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 286825B40FE7831B00A1477C /* LLVerticalLayout.m */; };
-		283A985D0FEAD5DE00BFECF3 /* LLLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 286825B30FE7831B00A1477C /* LLLayout.m */; };
-		283A99500FEAE0E200BFECF3 /* UIViewAdditionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 283A994F0FEAE0E200BFECF3 /* UIViewAdditionsTest.m */; };
-		286825B60FE7831B00A1477C /* LLLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 286825B30FE7831B00A1477C /* LLLayout.m */; };
-		286825B70FE7831B00A1477C /* LLVerticalLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 286825B40FE7831B00A1477C /* LLVerticalLayout.m */; };
-		286825B80FE7831B00A1477C /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 286825B50FE7831B00A1477C /* UIViewAdditions.m */; };
 		286825BD0FE7832500A1477C /* LazyLayouts.h in Headers */ = {isa = PBXBuildFile; fileRef = 286825B90FE7832500A1477C /* LazyLayouts.h */; };
-		286825BE0FE7832500A1477C /* LLLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 286825BA0FE7832500A1477C /* LLLayout.h */; };
-		286825BF0FE7832500A1477C /* LLVerticalLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 286825BB0FE7832500A1477C /* LLVerticalLayout.h */; };
-		286825C00FE7832500A1477C /* UIViewAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 286825BC0FE7832500A1477C /* UIViewAdditions.h */; };
 		286825C30FE7834500A1477C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 286825C20FE7834500A1477C /* UIKit.framework */; };
+		28DC9D870FF01355009292B4 /* LLVerticalLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC9D860FF01355009292B4 /* LLVerticalLayoutView.m */; };
+		28DC9D890FF01355009292B4 /* LLVerticalLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC9D860FF01355009292B4 /* LLVerticalLayoutView.m */; };
+		28DC9D8C0FF01595009292B4 /* LLLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC9D8B0FF01595009292B4 /* LLLayoutView.m */; };
+		28DC9D8E0FF01595009292B4 /* LLLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC9D8B0FF01595009292B4 /* LLLayoutView.m */; };
+		28DC9D910FF01781009292B4 /* VerticalLayoutViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC9D900FF01781009292B4 /* VerticalLayoutViewTest.m */; };
+		28DC9DF70FF019A5009292B4 /* LLLayoutView.h in Headers */ = {isa = PBXBuildFile; fileRef = 28DC9DF50FF019A5009292B4 /* LLLayoutView.h */; };
+		28DC9DF80FF019A5009292B4 /* LLVerticalLayoutView.h in Headers */ = {isa = PBXBuildFile; fileRef = 28DC9DF60FF019A5009292B4 /* LLVerticalLayoutView.h */; };
 		AA747D9F0F9514B9006C5449 /* LazyLayouts_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* LazyLayouts_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -47,7 +43,6 @@
 		283A98040FEAD32600BFECF3 /* GHUnitIPhoneTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHUnitIPhoneTestMain.m; sourceTree = "<group>"; };
 		283A98050FEAD32600BFECF3 /* GHUNSObject+Swizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHUNSObject+Swizzle.h"; sourceTree = "<group>"; };
 		283A98060FEAD32600BFECF3 /* libGHUnitIPhoneCL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGHUnitIPhoneCL.a; sourceTree = "<group>"; };
-		283A98080FEAD33E00BFECF3 /* VerticalLayoutTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalLayoutTest.m; sourceTree = "<group>"; };
 		283A980F0FEAD3A600BFECF3 /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		283A98110FEAD3A600BFECF3 /* Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Test-Info.plist"; sourceTree = "<group>"; };
 		283A981B0FEAD3D800BFECF3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -69,19 +64,16 @@
 		283A98440FEAD47F00BFECF3 /* GHUnitIPhoneTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHUnitIPhoneTestMain.m; sourceTree = "<group>"; };
 		283A98450FEAD47F00BFECF3 /* GHUNSObject+Swizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHUNSObject+Swizzle.h"; sourceTree = "<group>"; };
 		283A98460FEAD47F00BFECF3 /* libGHUnitIPhoneCL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGHUnitIPhoneCL.a; sourceTree = "<group>"; };
-		283A984A0FEAD48A00BFECF3 /* VerticalLayoutTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalLayoutTest.m; sourceTree = "<group>"; };
 		283A984D0FEAD4C400BFECF3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		283A984F0FEAD4C400BFECF3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		283A98AE0FEAD96700BFECF3 /* TestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestHelper.h; sourceTree = "<group>"; };
-		283A994F0FEAE0E200BFECF3 /* UIViewAdditionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditionsTest.m; sourceTree = "<group>"; };
-		286825B30FE7831B00A1477C /* LLLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLLayout.m; sourceTree = "<group>"; };
-		286825B40FE7831B00A1477C /* LLVerticalLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLVerticalLayout.m; sourceTree = "<group>"; };
-		286825B50FE7831B00A1477C /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
 		286825B90FE7832500A1477C /* LazyLayouts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LazyLayouts.h; path = LazyLayouts/LazyLayouts.h; sourceTree = "<group>"; };
-		286825BA0FE7832500A1477C /* LLLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLLayout.h; path = LazyLayouts/LLLayout.h; sourceTree = "<group>"; };
-		286825BB0FE7832500A1477C /* LLVerticalLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLVerticalLayout.h; path = LazyLayouts/LLVerticalLayout.h; sourceTree = "<group>"; };
-		286825BC0FE7832500A1477C /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIViewAdditions.h; path = LazyLayouts/UIViewAdditions.h; sourceTree = "<group>"; };
 		286825C20FE7834500A1477C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		28DC9D860FF01355009292B4 /* LLVerticalLayoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLVerticalLayoutView.m; sourceTree = "<group>"; };
+		28DC9D8B0FF01595009292B4 /* LLLayoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLLayoutView.m; sourceTree = "<group>"; };
+		28DC9D900FF01781009292B4 /* VerticalLayoutViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalLayoutViewTest.m; sourceTree = "<group>"; };
+		28DC9DF50FF019A5009292B4 /* LLLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLLayoutView.h; path = LazyLayouts/LLLayoutView.h; sourceTree = "<group>"; };
+		28DC9DF60FF019A5009292B4 /* LLVerticalLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLVerticalLayoutView.h; path = LazyLayouts/LLVerticalLayoutView.h; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* LazyLayouts_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LazyLayouts_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libLazyLayouts.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLazyLayouts.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,7 +115,6 @@
 		0867D691FE84028FC02AAC07 /* LazyLayouts */ = {
 			isa = PBXGroup;
 			children = (
-				283A98490FEAD48A00BFECF3 /* Tests */,
 				283A98350FEAD47F00BFECF3 /* GHUnit */,
 				283A981D0FEAD3FE00BFECF3 /* libGHUnitIPhoneCL.a */,
 				283A981B0FEAD3D800BFECF3 /* CoreGraphics.framework */,
@@ -153,12 +144,10 @@
 			isa = PBXGroup;
 			children = (
 				286825B90FE7832500A1477C /* LazyLayouts.h */,
-				286825BA0FE7832500A1477C /* LLLayout.h */,
-				286825B30FE7831B00A1477C /* LLLayout.m */,
-				286825BB0FE7832500A1477C /* LLVerticalLayout.h */,
-				286825B40FE7831B00A1477C /* LLVerticalLayout.m */,
-				286825BC0FE7832500A1477C /* UIViewAdditions.h */,
-				286825B50FE7831B00A1477C /* UIViewAdditions.m */,
+				28DC9DF50FF019A5009292B4 /* LLLayoutView.h */,
+				28DC9D8B0FF01595009292B4 /* LLLayoutView.m */,
+				28DC9DF60FF019A5009292B4 /* LLVerticalLayoutView.h */,
+				28DC9D860FF01355009292B4 /* LLVerticalLayoutView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -190,9 +179,8 @@
 		283A98070FEAD33E00BFECF3 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				283A98080FEAD33E00BFECF3 /* VerticalLayoutTest.m */,
 				283A98AE0FEAD96700BFECF3 /* TestHelper.h */,
-				283A994F0FEAE0E200BFECF3 /* UIViewAdditionsTest.m */,
+				28DC9D900FF01781009292B4 /* VerticalLayoutViewTest.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -221,14 +209,6 @@
 			path = GHUnit;
 			sourceTree = "<group>";
 		};
-		283A98490FEAD48A00BFECF3 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				283A984A0FEAD48A00BFECF3 /* VerticalLayoutTest.m */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
 		32C88DFF0371C24200C91783 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,9 +226,8 @@
 			files = (
 				AA747D9F0F9514B9006C5449 /* LazyLayouts_Prefix.pch in Headers */,
 				286825BD0FE7832500A1477C /* LazyLayouts.h in Headers */,
-				286825BE0FE7832500A1477C /* LLLayout.h in Headers */,
-				286825BF0FE7832500A1477C /* LLVerticalLayout.h in Headers */,
-				286825C00FE7832500A1477C /* UIViewAdditions.h in Headers */,
+				28DC9DF70FF019A5009292B4 /* LLLayoutView.h in Headers */,
+				28DC9DF80FF019A5009292B4 /* LLVerticalLayoutView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,11 +303,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				283A98470FEAD47F00BFECF3 /* GHUnitIPhoneTestMain.m in Sources */,
-				283A984B0FEAD48A00BFECF3 /* VerticalLayoutTest.m in Sources */,
-				283A985B0FEAD5CB00BFECF3 /* UIViewAdditions.m in Sources */,
-				283A985C0FEAD5D700BFECF3 /* LLVerticalLayout.m in Sources */,
-				283A985D0FEAD5DE00BFECF3 /* LLLayout.m in Sources */,
-				283A99500FEAE0E200BFECF3 /* UIViewAdditionsTest.m in Sources */,
+				28DC9D870FF01355009292B4 /* LLVerticalLayoutView.m in Sources */,
+				28DC9D8C0FF01595009292B4 /* LLLayoutView.m in Sources */,
+				28DC9D910FF01781009292B4 /* VerticalLayoutViewTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,9 +313,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				286825B60FE7831B00A1477C /* LLLayout.m in Sources */,
-				286825B70FE7831B00A1477C /* LLVerticalLayout.m in Sources */,
-				286825B80FE7831B00A1477C /* UIViewAdditions.m in Sources */,
+				28DC9D890FF01355009292B4 /* LLVerticalLayoutView.m in Sources */,
+				28DC9D8E0FF01595009292B4 /* LLLayoutView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
