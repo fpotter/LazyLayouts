@@ -89,6 +89,17 @@
 - (CGSize)sizeThatFits:(CGSize)size {  
   return [self layoutSubviews:[self subviewsWithoutBackgroundView] withAvailableSize:size updatePositions:NO];
 }
+
+- (void)setFrame:(CGRect)frame {
+  CGRect oldFrame = self.frame;  
+  [super setFrame:frame];
+  
+  // If our frame changes, then it can affect the size of our parent.  It's nice
+  // to tell them what's up with us.
+  if (self.superview != nil && !CGRectEqualToRect(oldFrame, frame)) {
+    [self.superview setNeedsLayout];
+  }
+}
     
 - (void)dealloc {
   [super dealloc];
@@ -101,8 +112,8 @@
 }
 
 - (void)willRemoveSubview:(UIView *)subview {
+  [super willRemoveSubview:subview];
   [_layoutParams removeObjectForKey:[NSValue valueWithPointer:subview]];
-  [super willRemoveSubview:subview];  
 }
 
 - (LLLayoutParams *)layoutParamsForSubview:(UIView *)subview {
@@ -154,7 +165,6 @@
   params.fillHeight = fillHeight;
   [self addSubview:subview withParams:params];    
 }
-
 
 @end
 
