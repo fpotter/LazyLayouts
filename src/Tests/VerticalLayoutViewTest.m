@@ -52,6 +52,31 @@
   GHAssertEqualRects(boxThree.frame, CGRectMake(0, 80, 40, 40), @"");  
 }
 
+- (void)testHiddenViewsAreGivenZeroDimensions {
+  LLVerticalLayoutView *view = [[[LLVerticalLayoutView alloc] initWithFrame:CGRectZero] autorelease];
+  view.resizeToFitSubviews = YES;
+  
+  UIView *boxOne = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)] autorelease];
+  [view addSubview:boxOne];
+  
+  UIView *boxTwo = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)] autorelease];
+  [view addSubview:boxTwo];
+  
+  UIView *boxThree = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)] autorelease];
+  [view addSubview:boxThree];
+  
+  // This should make boxTwo have zero width and height
+  boxTwo.hidden = YES;
+  
+  [view layoutIfNeeded];
+  
+  // Should be zero w/h, but should still be positioned correctly.
+  GHAssertEqualRects(boxTwo.frame, CGRectMake(0, 40, 0, 0), @"");
+  
+  // And the total width of the container should not include boxTwo
+  GHAssertEqualRects(view.frame, CGRectMake(0, 0, 40, 80), @"");
+}
+
 - (void)testLayoutCanResizeToFitSubviews {
   LLVerticalLayoutView *view = [[[LLVerticalLayoutView alloc] initWithFrame:CGRectZero] autorelease];
   view.resizeToFitSubviews = YES;
