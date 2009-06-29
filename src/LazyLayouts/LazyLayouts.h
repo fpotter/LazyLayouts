@@ -1,5 +1,6 @@
 
 #import "LazyLayouts/LLVerticalLayoutView.h"
+#import "LazyLayouts/LLHorizontalLayoutView.h"
 
 //#ifdef DEBUG
 #define LLLOG NSLog

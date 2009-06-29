@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		282C45500FF83CD100B2D6F9 /* HorizontalLayoutViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 282C454F0FF83CD100B2D6F9 /* HorizontalLayoutViewTest.m */; };
+		282C45530FF83D3C00B2D6F9 /* LLHorizontalLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 282C45520FF83D3C00B2D6F9 /* LLHorizontalLayoutView.m */; };
+		282C45550FF83D5A00B2D6F9 /* LLHorizontalLayoutView.h in Headers */ = {isa = PBXBuildFile; fileRef = 282C45540FF83D5A00B2D6F9 /* LLHorizontalLayoutView.h */; };
 		283A981E0FEAD3FE00BFECF3 /* libGHUnitIPhoneCL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 283A981D0FEAD3FE00BFECF3 /* libGHUnitIPhoneCL.a */; };
 		283A98470FEAD47F00BFECF3 /* GHUnitIPhoneTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 283A98440FEAD47F00BFECF3 /* GHUnitIPhoneTestMain.m */; };
 		283A98480FEAD47F00BFECF3 /* libGHUnitIPhoneCL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 283A98460FEAD47F00BFECF3 /* libGHUnitIPhoneCL.a */; };
@@ -26,6 +29,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		282C454F0FF83CD100B2D6F9 /* HorizontalLayoutViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalLayoutViewTest.m; sourceTree = "<group>"; };
+		282C45520FF83D3C00B2D6F9 /* LLHorizontalLayoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLHorizontalLayoutView.m; sourceTree = "<group>"; };
+		282C45540FF83D5A00B2D6F9 /* LLHorizontalLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLHorizontalLayoutView.h; path = LazyLayouts/LLHorizontalLayoutView.h; sourceTree = SOURCE_ROOT; };
 		283A97F60FEAD32600BFECF3 /* GHAsyncTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHAsyncTestCase.h; sourceTree = "<group>"; };
 		283A97F70FEAD32600BFECF3 /* GHMockCLLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHMockCLLocationManager.h; sourceTree = "<group>"; };
 		283A97F80FEAD32600BFECF3 /* GHMockNSHTTPURLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHMockNSHTTPURLResponse.h; sourceTree = "<group>"; };
@@ -144,6 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				286825B90FE7832500A1477C /* LazyLayouts.h */,
+				282C45540FF83D5A00B2D6F9 /* LLHorizontalLayoutView.h */,
+				282C45520FF83D3C00B2D6F9 /* LLHorizontalLayoutView.m */,
 				28DC9DF50FF019A5009292B4 /* LLLayoutView.h */,
 				28DC9D8B0FF01595009292B4 /* LLLayoutView.m */,
 				28DC9DF60FF019A5009292B4 /* LLVerticalLayoutView.h */,
@@ -181,6 +189,7 @@
 			children = (
 				283A98AE0FEAD96700BFECF3 /* TestHelper.h */,
 				28DC9D900FF01781009292B4 /* VerticalLayoutViewTest.m */,
+				282C454F0FF83CD100B2D6F9 /* HorizontalLayoutViewTest.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -228,6 +237,7 @@
 				286825BD0FE7832500A1477C /* LazyLayouts.h in Headers */,
 				28DC9DF70FF019A5009292B4 /* LLLayoutView.h in Headers */,
 				28DC9DF80FF019A5009292B4 /* LLVerticalLayoutView.h in Headers */,
+				282C45550FF83D5A00B2D6F9 /* LLHorizontalLayoutView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +316,8 @@
 				28DC9D870FF01355009292B4 /* LLVerticalLayoutView.m in Sources */,
 				28DC9D8C0FF01595009292B4 /* LLLayoutView.m in Sources */,
 				28DC9D910FF01781009292B4 /* VerticalLayoutViewTest.m in Sources */,
+				282C45500FF83CD100B2D6F9 /* HorizontalLayoutViewTest.m in Sources */,
+				282C45530FF83D3C00B2D6F9 /* LLHorizontalLayoutView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
