@@ -2,21 +2,6 @@
 #import "TestHelper.h"
 #import <LazyLayouts/LazyLayouts.h>
 
-@interface MyView : UIView
-
-@end
-
-@implementation MyView
-
-- (CGSize)sizeThatFits:(CGSize)size {
-  LLLOG(@"sizeThatFits:");
-  LLLOGSIZE(size);
-  return [super sizeThatFits:size];
-}
-
-@end
-
-
 @interface VerticalLayoutViewTest : GHTestCase {
   NSAutoreleasePool *_pool;
 }
@@ -498,7 +483,9 @@
   
   LLVerticalLayoutView *parent = [[[LLVerticalLayoutView alloc] initWithFrame:CGRectZero] autorelease];
   parent.resizeToFitSubviews = YES;
-  [parent addSubview:child margins:UIEdgeInsetsZero fillWidth:YES fillHeight:YES];
+  
+  // Inset child by top:1, left:2, bottom:3, right:4 
+  [parent addSubview:child margins:UIEdgeInsetsMake(1, 2, 3, 4) fillWidth:YES fillHeight:YES];
   
   LLVerticalLayoutView *grandParent = [[[LLVerticalLayoutView alloc] initWithFrame:CGRectZero] autorelease];
   grandParent.resizeToFitSubviews = YES;
@@ -512,7 +499,7 @@
   
   // The first fixed size layout parent is the great grand parent, so the child (and its containers) should
   // fill the the great greant parent's size.
-  GHAssertEqualRects(child.frame, CGRectMake(0, 0, 200, 200), @"Child should expand.");
+  GHAssertEqualRects(child.frame, CGRectMake(2, 1, 200 - 2 - 4, 200 - 1 - 3), @"Child should expand but respect margins");
   GHAssertEqualRects(parent.frame, CGRectMake(0, 0, 200, 200), @"Parent should expand.");
   GHAssertEqualRects(grandParent.frame, CGRectMake(0, 0, 200, 200), @" should expand.");
 }

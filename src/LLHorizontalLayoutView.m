@@ -1,8 +1,8 @@
 
-#import "LLVerticalLayoutView.h"
+#import "LLHorizontalLayoutView.h"
 #import "LazyLayouts.h"
 
-@implementation LLVerticalLayoutView
+@implementation LLHorizontalLayoutView
 
 @synthesize spacing = _spacing;
 
@@ -14,44 +14,44 @@
 }
 
 - (void)dealloc {
-    [super dealloc];
+  [super dealloc];
 }
 
 - (Class)paramsClass {
-  return [LLVerticalLayoutParams class];
+  return [LLHorizontalLayoutParams class];
 }
 
 - (void)addSubview:(UIView *)subview {
   // Add a subview with the default parameters.
   [self addSubview:subview
-             align:LLVerticalLayoutAlignLeft
+             align:LLHorizontalLayoutAlignTop
            margins:UIEdgeInsetsZero
          fillWidth:NO
         fillHeight:NO];
 }
 
 - (void)addSubview:(UIView *)subview 
-             align:(LLVerticalLayoutAlign)align {
-  LLVerticalLayoutParams *params = [[[[self paramsClass] alloc] init] autorelease];
+             align:(LLHorizontalLayoutAlign)align {
+  LLHorizontalLayoutParams *params = [[[[self paramsClass] alloc] init] autorelease];
   params.align = align;
   [super addSubview:subview withParams:params];
 }
 
 - (void)addSubview:(UIView *)subview 
-             align:(LLVerticalLayoutAlign)align
+             align:(LLHorizontalLayoutAlign)align
            margins:(UIEdgeInsets)margins {
-  LLVerticalLayoutParams *params = [[[[self paramsClass] alloc] init] autorelease];
+  LLHorizontalLayoutParams *params = [[[[self paramsClass] alloc] init] autorelease];
   params.align = align;
   params.margins = margins;
   [super addSubview:subview withParams:params];
 }
 
 - (void)addSubview:(UIView *)subview 
-             align:(LLVerticalLayoutAlign)align 
+             align:(LLHorizontalLayoutAlign)align 
            margins:(UIEdgeInsets)margins 
          fillWidth:(BOOL)fillWidth 
         fillHeight:(BOOL)fillHeight {
-  LLVerticalLayoutParams *params = [[[[self paramsClass] alloc] init] autorelease];
+  LLHorizontalLayoutParams *params = [[[[self paramsClass] alloc] init] autorelease];
   params.align = align;
   params.margins = margins;
   params.expandToFillWidth = fillWidth;
@@ -61,10 +61,10 @@
 
 - (CGSize)layoutSubviews:(NSArray *)subviews withAvailableSize:(CGSize)availableSize updatePositions:(BOOL)updatePositions {
   
-  // This will determine the height of our layout
-  int sumOfHeights = 0;
   // This will determine the width of our layout
-  int maxSubviewWidth = 0;
+  int sumOfWidths = 0;
+  // This will determine the height of our layout
+  int maxSubviewHeight = 0;
   
   int subviewCount = subviews.count;
   CGSize subviewSizes[subviewCount];
@@ -72,35 +72,35 @@
   for (int i = 0; i < subviewCount; i++) {    
     UIView *subview = [subviews objectAtIndex:i];
     
-    LLVerticalLayoutParams *params = (LLVerticalLayoutParams *)[self layoutParamsForSubview:subview];
+    LLHorizontalLayoutParams *params = (LLHorizontalLayoutParams *)[self layoutParamsForSubview:subview];
     
-    int availableHeightForSubview = 
-    availableSize.height -
-    sumOfHeights - 
-    (params.margins.top + params.margins.bottom);
+    int availableWidthForSubview = 
+    availableSize.width -
+    sumOfWidths - 
+    (params.margins.left + params.margins.right);
     
-    int availableWidthForSubview =
-    availableSize.width - (params.margins.left + params.margins.right);
+    int availableHeightForSubview =
+    availableSize.height - (params.margins.top + params.margins.bottom);
     
     CGSize subviewSize = [self sizeForSubview:subview withAvailableSize:CGSizeMake(availableWidthForSubview, availableHeightForSubview)];
-        
-    sumOfHeights += (subviewSize.height + params.margins.top + params.margins.bottom);
-    maxSubviewWidth = MAX(subviewSize.width + params.margins.left + params.margins.right, maxSubviewWidth);
+    
+    sumOfWidths += (subviewSize.width + params.margins.left + params.margins.right);
+    maxSubviewHeight = MAX(subviewSize.height + params.margins.top + params.margins.bottom, maxSubviewHeight);
     
     if ((i + 1) < subviewCount) {
-      sumOfHeights += _spacing;
+      sumOfWidths += _spacing;
     }
     
     subviewSizes[i] = subviewSize;
   }
   
-  CGSize layoutSize = CGSizeMake(maxSubviewWidth, sumOfHeights);
+  CGSize layoutSize = CGSizeMake(sumOfWidths, maxSubviewHeight);
   
   if (updatePositions) {  
-    int yPos = 0;
+    int xPos = 0;
     for (int i = 0; i < subviewCount; i++) {
       UIView *subview = [subviews objectAtIndex:i];
-      LLVerticalLayoutParams *params = (LLVerticalLayoutParams *)[self layoutParamsForSubview:subview];
+      LLHorizontalLayoutParams *params = (LLHorizontalLayoutParams *)[self layoutParamsForSubview:subview];
       
       CGSize subviewSize = subviewSizes[i];
       
@@ -109,21 +109,21 @@
       subviewFrame.size.height = subviewSize.height;
       subview.frame = subviewFrame;
       
-      int xPos;
+      int yPos;
       
-      if (params.align == LLVerticalLayoutAlignLeft) {
-        xPos = params.margins.left;
-      } else if (params.align == LLVerticalLayoutAlignRight) {
-        xPos = layoutSize.width - subviewSize.width - params.margins.right;
-      } else if (params.align == LLVerticalLayoutAlignCenter) {
-        xPos = round((layoutSize.width / 2) - (subviewSize.width / 2));
+      if (params.align == LLHorizontalLayoutAlignTop) {
+        yPos = params.margins.top;
+      } else if (params.align == LLHorizontalLayoutAlignBottom) {
+        yPos = layoutSize.height - subviewSize.height - params.margins.bottom;
+      } else if (params.align == LLHorizontalLayoutAlignMiddle) {
+        yPos = round((layoutSize.height / 2) - (subviewSize.height / 2));
       }
       
-      subview.frame = CGRectMake(xPos, yPos + params.margins.top, subviewSize.width, subviewSize.height);
-      yPos += params.margins.top + subviewSize.height + params.margins.bottom;
+      subview.frame = CGRectMake(xPos + params.margins.left, yPos, subviewSize.width, subviewSize.height);
+      xPos += params.margins.left + subviewSize.width + params.margins.right;
       
       if ((i + 1) < subviewCount) {
-        yPos += _spacing;
+        xPos += _spacing;
       }
     }
   }
@@ -134,13 +134,13 @@
 
 @end
 
-@implementation LLVerticalLayoutParams
+@implementation LLHorizontalLayoutParams
 
 @synthesize align = _align;
 
 - (id)init {
   if (self = [super init]) {
-    self.align = LLVerticalLayoutAlignLeft;
+    self.align = LLHorizontalLayoutAlignTop;
   }
   return self;
 }
