@@ -34,7 +34,7 @@
   if (self.backgroundView == nil) {
     return self.subviews;
   } else {
-    NSMutableArray *subviews = [NSMutableArray arrayWithCapacity:(self.subviews.count - 1)];
+    NSMutableArray *subviews = [NSMutableArray arrayWithCapacity:0];
     
     for (UIView *subview in self.subviews) {
       if (subview != _backgroundView) {
@@ -54,6 +54,16 @@
       // just assume the whole screen is available.  This consistent with Apple's documentation
       // for sizeToFit
       return CGSizeMake(320, 480);
+    } else if ([self.superview isKindOfClass:[LLLayoutView class]]) {
+      // If our parent is a layout, then we must take into account any margin assigned to us.
+      
+      LLLayoutView *parentLayout = (LLLayoutView *)self.superview;      
+      LLVerticalLayoutParams *params = (LLVerticalLayoutParams *)[parentLayout layoutParamsForSubview:self];
+      
+      CGSize parentSize = self.superview.frame.size;
+      return CGSizeMake(parentSize.width - params.margins.left - params.margins.right,
+                        parentSize.height - params.margins.top - params.margins.bottom);
+            
     } else {
       // Look to our parent for our available size.
       return self.superview.frame.size;

@@ -504,4 +504,28 @@
   GHAssertEqualRects(grandParent.frame, CGRectMake(0, 0, 200, 200), @" should expand.");
 }
 
+- (void)testViewsThatFillDimensionsRespectMarginsOfTheirParents {
+  LLHorizontalLayoutView *grandparent = [[LLHorizontalLayoutView alloc] initWithFrame:CGRectZero];
+  grandparent.resizeToFitSubviews = YES;
+  
+  LLVerticalLayoutView *parent = [[LLVerticalLayoutView alloc] initWithFrame:CGRectZero];  
+  parent.resizeToFitSubviews = YES;
+  parent.spacing = 15;
+  
+  [grandparent addSubview:parent margins:UIEdgeInsetsMake(10, 10, 10, 10)];
+  
+  UIButton *child = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  child.titleLabel.text = @"Some Button";
+  child.titleLabel.font = [UIFont boldSystemFontOfSize:17.0];
+  
+  [parent addSubview:child margins:UIEdgeInsetsZero fillWidth:YES];
+  
+  [grandparent layoutIfNeeded];
+  
+  // When the button expands to fill the width, it needs to respect the margins of the parent.
+  GHAssertEqualRects(child.frame,
+                     CGRectMake(0, 0, 300, 16),
+                     @"Button should fill to width but respect parent's margins.");
+}
+
 @end
