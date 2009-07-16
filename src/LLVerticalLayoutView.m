@@ -72,6 +72,10 @@
   for (int i = 0; i < subviewCount; i++) {    
     UIView *subview = [subviews objectAtIndex:i];
     
+    if (subview.hidden) {
+      continue;
+    }
+    
     LLVerticalLayoutParams *params = (LLVerticalLayoutParams *)[self layoutParamsForSubview:subview];
     
     int availableHeightForSubview = 
@@ -100,6 +104,11 @@
     int yPos = 0;
     for (int i = 0; i < subviewCount; i++) {
       UIView *subview = [subviews objectAtIndex:i];
+      
+      if (subview.hidden) {
+        continue;
+      }      
+      
       LLVerticalLayoutParams *params = (LLVerticalLayoutParams *)[self layoutParamsForSubview:subview];
       
       CGSize subviewSize = subviewSizes[i];

@@ -132,21 +132,17 @@
 
 - (CGSize)sizeForSubview:(UIView *)subview withAvailableSize:(CGSize)availableSize {  
   CGSize size;
+
+  size = [subview sizeThatFits:availableSize];
   
-  if (subview.hidden) {
-    size = CGSizeZero;
-  } else {  
-    size = [subview sizeThatFits:availableSize];
-    
-    LLLayoutParams *params = [self layoutParamsForSubview:subview];
-    
-    if (params.expandToFillWidth) {
-      size.width = MAX(size.width, availableSize.width);
-    }
-    
-    if (params.fillHeight) {
-      size.height = MAX(size.height, availableSize.height);
-    }
+  LLLayoutParams *params = [self layoutParamsForSubview:subview];
+  
+  if (params.expandToFillWidth) {
+    size.width = MAX(size.width, availableSize.width);
+  }
+  
+  if (params.fillHeight) {
+    size.height = MAX(size.height, availableSize.height);
   }
   
   return size;

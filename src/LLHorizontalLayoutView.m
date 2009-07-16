@@ -71,6 +71,10 @@
   
   for (int i = 0; i < subviewCount; i++) {    
     UIView *subview = [subviews objectAtIndex:i];
+
+    if (subview.hidden) {
+      continue;
+    }    
     
     LLHorizontalLayoutParams *params = (LLHorizontalLayoutParams *)[self layoutParamsForSubview:subview];
     
@@ -98,8 +102,13 @@
   
   if (updatePositions) {  
     int xPos = 0;
-    for (int i = 0; i < subviewCount; i++) {
+    for (int i = 0; i < subviewCount; i++) {      
       UIView *subview = [subviews objectAtIndex:i];
+      
+      if (subview.hidden) {
+        continue;
+      }      
+      
       LLHorizontalLayoutParams *params = (LLHorizontalLayoutParams *)[self layoutParamsForSubview:subview];
       
       CGSize subviewSize = subviewSizes[i];

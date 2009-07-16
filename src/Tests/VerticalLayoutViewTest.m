@@ -37,7 +37,7 @@
   GHAssertEqualRects(boxThree.frame, CGRectMake(0, 80, 40, 40), @"");  
 }
 
-- (void)testHiddenViewsAreGivenZeroDimensions {
+- (void)testHiddenViewsAreSkippedOverDuringLayout {
   LLVerticalLayoutView *view = [[[LLVerticalLayoutView alloc] initWithFrame:CGRectZero] autorelease];
   view.resizeToFitSubviews = YES;
   
@@ -55,11 +55,11 @@
   
   [view layoutIfNeeded];
   
-  // Should be zero w/h, but should still be positioned correctly.
-  GHAssertEqualRects(boxTwo.frame, CGRectMake(0, 40, 0, 0), @"");
-  
   // And the total width of the container should not include boxTwo
   GHAssertEqualRects(view.frame, CGRectMake(0, 0, 40, 80), @"");
+  
+  GHAssertEqualRects(boxOne.frame, CGRectMake(0, 0, 40, 40), @"");
+  GHAssertEqualRects(boxThree.frame, CGRectMake(0, 40, 40, 40), @"");  
 }
 
 - (void)testLayoutCanResizeToFitSubviews {
@@ -526,6 +526,33 @@
   GHAssertEqualRects(child.frame,
                      CGRectMake(0, 0, 300, 16),
                      @"Button should fill to width but respect parent's margins.");
+}
+
+- (void)testMarginsForHiddenViewShouldntHaveAnEffect {
+  LLVerticalLayoutView *view = [[[LLVerticalLayoutView alloc] initWithFrame:CGRectZero] autorelease];
+  view.resizeToFitSubviews = YES;
+  
+  UIView *boxOne = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)] autorelease];
+  [view addSubview:boxOne];
+  
+  UIView *boxTwo = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)] autorelease];
+  
+  // Add a margin that causes boxTwo to be overlayed on top of boxOne
+  [view addSubview:boxTwo margins:UIEdgeInsetsMake(-20, 0, 0, 0)];
+  
+  // But, it shouldn't really overlap because it's hidden!
+  boxTwo.hidden = YES;
+  
+  UIView *boxThree = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)] autorelease];
+  [view addSubview:boxThree];
+  
+  [view layoutIfNeeded];
+  
+  GHAssertEqualRects(view.frame, CGRectMake(0, 0, 40, 80),
+                     @"Parent should have the correct spacing.");
+  
+  GHAssertEqualRects(boxOne.frame, CGRectMake(0, 0, 40, 40), @"");
+  GHAssertEqualRects(boxThree.frame, CGRectMake(0, 40, 40, 40), @"");
 }
 
 @end
